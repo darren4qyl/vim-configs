@@ -13,8 +13,8 @@ syntax on
 " Vim UI
 "--------
 " color scheme
-set background=dark
 color solarized
+set background=dark
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -97,6 +97,11 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
+
+
+" delimitMate
+"au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_matchpairs = "(:),[:],{:}"
 
 " tabbar
 let g:Tb_MaxSize = 2
