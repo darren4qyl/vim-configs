@@ -25,7 +25,7 @@ Bundle 'tomtom/tlib_vim'
 "-----------------
 " Fast navigation
 "-----------------
-Bundle 'edsono/vim-matchit'
+"Bundle 'edsono/vim-matchit'
 Bundle 'Lokaltog/vim-easymotion'
 
 "--------------
@@ -36,6 +36,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'yegappan/mru'
 
 "--------------
 " IDE features
