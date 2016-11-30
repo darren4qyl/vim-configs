@@ -48,23 +48,36 @@ set matchtime=2                                                   " show matchin
 set matchpairs+=<:>                                               " specially for html
 " set relativenumber
 
+"set foldenable " 开始折叠
+set foldmethod=syntax " 设置语法折叠
+set foldcolumn=0 " 设置折叠区域的宽度
+setlocal foldlevel=1 " 设置折叠层数为
+"set foldclose=all " 设置为自动关闭折叠 
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" 用空格键来开关折叠)
+
 " Default Indentation
 set autoindent
 set smartindent     " indent when
 set tabstop=4       " tab width
 set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
-" set textwidth=79
 " set smarttab
 set expandtab       " expand tab to space
+"set textwidth=60
+set wrap  "/nowrap             " 长行显示自动折行"
+vmap <c-c> "+y"
 
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+"autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+"autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+"autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+"autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+
+autocmd FileType c,c++ setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 
 " syntax support
 autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
@@ -99,6 +112,9 @@ let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 
 
+" astyle codes format
+"let $PATH .= ":~/.vim/bundle/c-cpp-java-format.vim/bin"
+
 " delimitMate
 "au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_matchpairs = "(:),[:],{:}"
@@ -106,6 +122,8 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 " tabbar
 let g:Tb_MaxSize = 2
 let g:Tb_TabWrap = 1
+let g:Tb_MapWindowNavVim = 1
+let g:Tb_MapCTabSwitchBufs = 1
 
 hi Tb_Normal guifg=white ctermfg=white
 hi Tb_Changed guifg=green ctermfg=green
@@ -272,3 +290,4 @@ if has("gui_running")
     map <D-9> 9gt
     map <D-0> :tablast<CR>
 endif
+

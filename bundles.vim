@@ -8,6 +8,8 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
+Bundle 'rhysd/vim-clang-format'
+
 "------------------
 " Code Completions
 "------------------
