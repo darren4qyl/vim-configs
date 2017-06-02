@@ -14,7 +14,7 @@ syntax on
 "--------
 " color scheme
 color solarized
-set background=dark
+set background=light
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -56,17 +56,23 @@ setlocal foldlevel=1 " 设置折叠层数为
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 用空格键来开关折叠)
 
+set path=./**
+
 " Default Indentation
 set autoindent
 set smartindent     " indent when
 set tabstop=4       " tab width
 set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
+" TAB替换为空格：
+set ts=4
+set expandtab
+%retab!
 " set smarttab
 set expandtab       " expand tab to space
 "set textwidth=60
 set wrap  "/nowrap             " 长行显示自动折行"
-vmap <c-c> "+y"
+vmap <c-c> "+y"                " ctrl+c复制文本
 
 "autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 "autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -119,16 +125,16 @@ autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 "au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_matchpairs = "(:),[:],{:}"
 
-" tabbar
-let g:Tb_MaxSize = 2
-let g:Tb_TabWrap = 1
-let g:Tb_MapWindowNavVim = 1
-let g:Tb_MapCTabSwitchBufs = 1
-
-hi Tb_Normal guifg=white ctermfg=white
-hi Tb_Changed guifg=green ctermfg=green
-hi Tb_VisibleNormal ctermbg=252 ctermfg=235
-hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
+"tabbar
+"let g:Tb_MaxSize = 2
+"let g:Tb_TabWrap = 1
+"let g:Tb_MapWindowNavVim = 1
+"let g:Tb_MapCTabSwitchBufs = 1
+"
+"hi Tb_Normal guifg=white ctermfg=white
+"hi Tb_Changed guifg=green ctermfg=green
+"hi Tb_VisibleNormal ctermbg=252 ctermfg=235
+"hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
 " easy-motion
 let g:EasyMotion_leader_key = '<Leader>'
