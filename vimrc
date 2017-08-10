@@ -13,8 +13,9 @@ syntax on
 " Vim UI
 "--------
 " color scheme
-color solarized
-set background=light
+"color solarized
+"set background=light
+"set background=dark
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -82,7 +83,7 @@ vmap <c-c> "+y"                " ctrl+c复制文本
 "autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 "autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
-autocmd FileType c,c++ setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 
 " syntax support
@@ -138,6 +139,20 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 
 " easy-motion
 let g:EasyMotion_leader_key = '<Leader>'
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 " Tagbar
 let g:tagbar_left=1
