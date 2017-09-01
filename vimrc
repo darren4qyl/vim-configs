@@ -17,6 +17,11 @@ syntax on
 "set background=light
 "set background=dark
 
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
@@ -25,7 +30,7 @@ set cursorline cursorcolumn
 " search
 set incsearch
 set hlsearch 
-"set highlight 	" conflict with highlight current line
+"set highlight  " conflict with highlight current line
 set ignorecase
 set smartcase
 
@@ -141,10 +146,13 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 let g:EasyMotion_leader_key = '<Leader>'
 
 let g:clang_format#style_options = {
+            \ "BasedOnStyle" : "Google",
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "IndentCaseLabels" : "false",
             \ "Standard" : "C++11"}
+" clangformat settings
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -289,6 +297,39 @@ nnoremap ; :
 :command Q q
 :command Qa qa
 :command QA qa
+
+""
+"For Ctrlp"
+""
+" CtrlP ------------------------------
+" file finder mapping
+let g:ctrlp_map = ',e'
+" tags (symbols) in current file finder mapping
+nmap ,g :CtrlPBufTag<CR>
+" tags (symbols) in all files finder mapping
+nmap ,G :CtrlPBufTagAll<CR>
+" general code finder in all files mapping
+nmap ,l :CtrlPLine<CR>
+" recent files finder mapping
+nmap ,M :CtrlPMRUFiles<CR>
+" commands finder mapping
+nmap ,c :CtrlPCmdPalette<CR>
+" to be able to call CtrlP with default search text
+function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+    execute ':CtrlP' . a:ctrlp_command_end
+    call feedkeys(a:search_text)
+endfunction
+" same as previous mappings, but calling with current word as default text
+nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+" don't change working directory
+let g:ctrlp_working_path_mode = 0
+" ignore these files and folders on file finder
 
 " for macvim
 if has("gui_running")

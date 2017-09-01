@@ -82,6 +82,9 @@ Bundle 'nvie/vim-togglemouse'
 "Bundle 'tpope/vim-markdown'
 " Bundle 'timcharper/textile.vim'
 
+"------- match-----
+Bundle 'vim-scripts/Mark--Karkat'
+
 "------- Ruby --------
 " Bundle 'tpope/vim-endwise'
 
