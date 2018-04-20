@@ -58,8 +58,8 @@ set matchpairs+=<:>                                               " specially fo
 set foldmethod=syntax " 设置语法折叠
 set foldcolumn=0 " 设置折叠区域的宽度
 setlocal foldlevel=1 " 设置折叠层数为
-"set foldclose=all " 设置为自动关闭折叠 
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+set foldclose=all " 设置为自动关闭折叠 
+"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 用空格键来开关折叠)
 
 set path=./**
@@ -80,13 +80,13 @@ set expandtab       " expand tab to space
 set wrap  "/nowrap             " 长行显示自动折行"
 vmap <c-c> "+y"                " ctrl+c复制文本
 
-"autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-"autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-"autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-"autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
-"autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
-"autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-"autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 
 autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType java setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
@@ -132,27 +132,26 @@ autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
 let delimitMate_matchpairs = "(:),[:],{:}"
 
 "tabbar
-"let g:Tb_MaxSize = 2
-"let g:Tb_TabWrap = 1
-"let g:Tb_MapWindowNavVim = 1
-"let g:Tb_MapCTabSwitchBufs = 1
-"
-"hi Tb_Normal guifg=white ctermfg=white
-"hi Tb_Changed guifg=green ctermfg=green
-"hi Tb_VisibleNormal ctermbg=252 ctermfg=235
-"hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
+let g:Tb_MaxSize = 2
+let g:Tb_TabWrap = 1
+let g:Tb_MapWindowNavVim = 1
+let g:Tb_MapCTabSwitchBufs = 1
+
+hi Tb_Normal guifg=white ctermfg=white
+hi Tb_Changed guifg=green ctermfg=green
+hi Tb_VisibleNormal ctermbg=252 ctermfg=235
+hi Tb_VisibleChanged guifg=green ctermbg=252 ctermfg=white
 
 " easy-motion
 let g:EasyMotion_leader_key = '<Leader>'
 
-let g:clang_format#style_options = {
-            \ "BasedOnStyle" : "Google",
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "IndentCaseLabels" : "false",
-            \ "Standard" : "C++11"}
 " clangformat settings
+let g:clang_format#code_style = "google"
+"let g:clang_format#style_options = {
+"            \ "AccessModifierOffset" : -4,
+"            \ "AllowShortIfStatementsOnASingleLine" : "true",
+"            \ "AlwaysBreakTemplateDeclarations" : "true",
+"            \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -256,8 +255,28 @@ nmap <F6> :NERDTreeToggle<cr>
 nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
 nmap  <D-/> :
-nnoremap <leader>a :Ack
+nnoremap <silent> <buffer>  <leader>a :Ack  .
 nnoremap <leader>v V`]
+nnoremap <leader>q :resize +100
+
+
+"调用ag进行搜索
+if executable('ag')
+    let g:ackprg = 'ag --column'
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+endif
+"高亮搜索关键词
+let g:ackhighlight = 1
+"修改快速预览窗口高度为15
+let g:ack_qhandler = "botright copen 15"
+"在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
+let g:ack_autoclose = 1
+"使用ack的空白搜索，即不添加任何参数时对光标下的单词进行搜索，默认值为1，表示开启，置0以后使用空白搜索将返回错误信息
+let g:ack_use_cword_for_empty_search = 1
+"部分功能受限，但对于大项目搜索速度较慢时可以尝试开启
+"let g:ack_use_dispatch = 1
 
 "------------------
 " Useful Functions

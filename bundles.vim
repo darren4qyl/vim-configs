@@ -53,6 +53,8 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
 
+Bundle 'rking/ag.vim'
+
 "-------------
 " Other Utils
 "-------------
