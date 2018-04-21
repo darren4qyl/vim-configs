@@ -261,12 +261,14 @@ nnoremap <leader>q :resize +100
 
 
 "调用ag进行搜索
-if executable('ag')
-    let g:ackprg = 'ag --column'
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_use_caching = 0
-endif
+set runtimepath^=~/.vim/bundle/ag.vim
+let g:ag_prg="ag --vimgrep"
+"if executable('ag')
+"    let g:ackprg = 'ag --column'
+"    set grepprg=ag\ --nogroup\ --nocolor
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"    let g:ctrlp_use_caching = 0
+"endif
 "高亮搜索关键词
 let g:ackhighlight = 1
 "修改快速预览窗口高度为15
