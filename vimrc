@@ -75,7 +75,7 @@ set ts=4
 set expandtab
 %retab!
 " set smarttab
-set expandtab       " expand tab to space
+"set expandtab       " expand tab to space
 "set textwidth=60
 set wrap  "/nowrap             " 长行显示自动折行"
 vmap <c-c> "+y"                " ctrl+c复制文本
