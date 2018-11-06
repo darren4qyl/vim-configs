@@ -23,9 +23,10 @@ let mapleader = ","
 let g:mapleader = ","
 
 " highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
+"au WinLeave * set nocursorline nocursorcolumn
+"au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
+hi CursorColumn term=reverse ctermbg=95 guibg=Grey40 "设置竖线的颜色
 
 " search
 set incsearch
@@ -33,6 +34,7 @@ set hlsearch
 "set highlight  " conflict with highlight current line
 set ignorecase
 set smartcase
+hi Search cterm=bold ctermfg=red ctermbg=yellow
 
 " editor settings
 set history=1000
