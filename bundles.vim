@@ -38,8 +38,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'yegappan/mru'
-
+Bundle 'vim-scripts/mru.vim'
 "--------------
 " IDE features
 "--------------

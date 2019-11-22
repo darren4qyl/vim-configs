@@ -264,7 +264,7 @@ nnoremap <leader>q :resize +100
 
 "调用ag进行搜索
 set runtimepath^=~/.vim/bundle/ag.vim
-let g:ag_prg="ag --vimgrep"
+let g:ag_prg="ag --vimgrep --ignore=tags"
 "if executable('ag')
 "    let g:ackprg = 'ag --column'
 "    set grepprg=ag\ --nogroup\ --nocolor
