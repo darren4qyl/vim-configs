@@ -111,4 +111,8 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'fisadev/fisa-vim-colorscheme'
 
 
+"安装fzf
+set rtp+=/home/qiyunlong/.fzf/
+Plugin 'junegunn/fzf.vim'
+
 filetype plugin indent on     " required!

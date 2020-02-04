@@ -26,7 +26,7 @@ let g:mapleader = ","
 "au WinLeave * set nocursorline nocursorcolumn
 "au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
-hi CursorColumn term=reverse ctermbg=95 guibg=Grey40 "设置竖线的颜色
+hi CursorColumn term=reverse ctermbg=89 guibg=Grey40 "设置竖线的颜色
 
 " search
 set incsearch
@@ -34,7 +34,7 @@ set hlsearch
 "set highlight  " conflict with highlight current line
 set ignorecase
 set smartcase
-hi Search cterm=bold ctermfg=red ctermbg=yellow
+hi Search cterm=bold ctermfg=red ctermbg=yellow "设置高亮
 
 " editor settings
 set history=1000
