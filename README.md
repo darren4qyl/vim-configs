@@ -1,3 +1,6 @@
+bundle 安装
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 Maple's Vim config
 ==================
 
